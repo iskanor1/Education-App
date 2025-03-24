@@ -1,0 +1,2 @@
+D:/atom/Education-App/android/app/.cxx/Debug/723s1wj1/x86_64/CMakeFiles/edit_cache.dir
+D:/atom/Education-App/android/app/.cxx/Debug/723s1wj1/x86_64/CMakeFiles/rebuild_cache.dir
