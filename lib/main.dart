@@ -1,6 +1,8 @@
 import 'package:ecommercey/Api/dio.dart';
 import 'package:ecommercey/cubit/cubit.dart';
 import 'package:ecommercey/screens/LoginScreen.dart';
+import 'package:ecommercey/screens/billingscreen.dart';
+import 'package:ecommercey/screens/pay_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +31,7 @@ class MyApp extends StatelessWidget {
           ),
 
         ),
-        home: Loginscreen(),
+        home: BillingScreen(),
       ),
     );
   }
