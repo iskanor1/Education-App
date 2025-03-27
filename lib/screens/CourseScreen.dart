@@ -100,7 +100,7 @@ class CourseScreen extends StatelessWidget {
                  text: "Buy",
                  isSecondColor: colors.darkMode,
                  edo: (){
-                   Navigator.push(context, MaterialPageRoute(builder: (context) => BillingScreen()));
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => BillingScreen( price: 0,courseId: 'queam3z53myu49o',userId:'47bhg4hjrlzu941',userEmail: '420220489@fa-hists.edu.eg')));
                    
                  }
              ),

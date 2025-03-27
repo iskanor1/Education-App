@@ -104,6 +104,7 @@ class MySearchDelegate extends SearchDelegate{
           color: Colors.white, // Set the color for the title
           fontSize: 18, // Set the font size for the title
         ),
+
       ),
       textTheme: TextTheme(
         bodyLarge: TextStyle(color: Colors.white)
@@ -197,18 +198,13 @@ Widget containerWrapper(List<Widget> children) {
   );
 }
 
-Widget customTextField(String hint, IconData icon) {
-  return Padding(
-    padding: const EdgeInsets.only(bottom: 10.0),
-    child: TextFormField(
-      decoration: InputDecoration(
-        prefixIcon: Icon(icon),
-        hintText: hint,
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-        filled: true,
-        fillColor: Colors.white,
-      ),
+TextField customTextField(String label, IconData icon, {required TextEditingController controller}) {
+  return TextField(
+    controller: controller,
+    decoration: InputDecoration(
+      labelText: label,
+      prefixIcon: Icon(icon),
+      border: OutlineInputBorder(),
     ),
   );
 }
-

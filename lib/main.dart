@@ -3,6 +3,7 @@ import 'package:ecommercey/cubit/cubit.dart';
 import 'package:ecommercey/screens/LoginScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'Api/dio_pay.dart';
 import 'components/const.dart';
 
 void main() {
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    DioPay.init();
     return BlocProvider(
       create: (context) => AppCubit(),
       child: MaterialApp(
