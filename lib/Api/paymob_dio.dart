@@ -48,13 +48,13 @@ class PaymobManager{
         "https://accept.paymob.com/api/acceptance/subscription-plans",
         data: {
           "auth_token":  authanticationToken,
-          "amount_cents":amount, //  >>(STRING)<<
+          "amount_cents":amount,
           "currency": currency,//Not Req
           "delivery_needed": "false",
           "items": [],
         }
     );
-    return response.data["id"];  //INTGER
+    return response.data["id"];
   }
 
   Future<String> _getPaymentKey({

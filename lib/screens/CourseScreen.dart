@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../Api/const.dart';
 import '../components/components.dart';
 import '../components/const.dart';
+import 'billingscreen.dart';
 
 class CourseScreen extends StatelessWidget {
 
@@ -99,7 +100,10 @@ class CourseScreen extends StatelessWidget {
              child: Ebutton(
                  text: "Buy",
                  isSecondColor: colors.darkMode,
-                 edo: (){}
+                 edo: (){
+                   Navigator.push(context, MaterialPageRoute(builder: (context) => BillingScreen()));
+                   
+                 }
              ),
                             ),
              Padding(

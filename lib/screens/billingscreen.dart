@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toastification/toastification.dart';
 import '../models/payment_request.dart';
 
-const _cardBackgroundOpacity = 0.1; // Adjust this value as needed
+const _cardBackgroundOpacity = 0.1;
 
 class BillingScreen extends StatefulWidget {
   final PaymentModel? paymentModel;

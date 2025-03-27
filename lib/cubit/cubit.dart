@@ -8,7 +8,9 @@ import 'package:ecommercey/models/videos_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../Api/dio_pay.dart';
 import '../components/const.dart';
+import '../models/payment_request.dart';
 import '../screens/HomeScreen.dart';
 import '../screens/UserCoursesScreen.dart';
 import '../screens/UserScreen.dart';
@@ -25,6 +27,71 @@ class AppCubit extends Cubit<AppStates>
   VideosModel? Videos;
   late TokenModel videotoken;
   var filter;
+
+  //create billing information
+  PaymentModel ? paymentModel;
+
+  void BillingInformation({
+    //required Map<String, dynamic> billingDataJson
+ required  fname ,
+ required  lname ,
+ required  Apartment ,
+ required  Building ,
+ required  phoneNumber ,
+ required  country ,
+ required  city ,
+ required floor,
+ required state,
+    required street,
+    required email,
+    required price,
+    required courseId,
+    required userId,
+
+}) {
+    emit(BillingInformationState());
+
+    DioPay.postBillingData(url: "v1/intention/", requestData: {
+      'amount':price*100,
+      'currency':'EGP',
+      'payment_methods':[
+        4941494
+      ],
+       'billing_data':{
+         'apartment':Apartment,
+         'first_name':fname,
+         'last_name':lname,
+         'street':street,
+         'building':Building,
+         'phone_number':phoneNumber,
+         'city':city,
+         'country':country,
+         'email':email,
+         'floor':floor,
+         'state':state,
+
+       },
+      'extras':{
+        'courseId':courseId,
+        'userId':userId,
+      },
+      "expiration": 3600,
+      "notification_url": "https://hook.eu2.make.com/hkxsijulms0j6n0hfkmjkcjvfbgofk4k",
+      "redirection_url": "https://www.google.com/"
+
+
+    } ).then((value) {
+      print(value.data);
+
+      emit(BillingInformationSuccessfulState(value.data));
+    }).catchError((e) {
+      print(e.toString());
+
+      emit(BillingInformationFailedState());
+    });
+  }
+
+
   void  login(String email,String password){
     emit(LoginState());
   //login logic
@@ -49,6 +116,7 @@ class AppCubit extends Cubit<AppStates>
     );
 
   }
+
   void register({required fname,required lname,required email,required password, required passwordConfirm,required phone,required dob}){
     emit(RegisterState());
 

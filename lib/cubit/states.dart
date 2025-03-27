@@ -55,3 +55,11 @@ class GetVideosDataSuccessfulState extends AppStates{}
 class GetVideosDataFailedState extends AppStates{}
 
 class ChangeColorState extends AppStates{}
+
+class BillingInformationState extends AppStates {}
+
+class BillingInformationSuccessfulState extends AppStates {
+  BillingInformationSuccessfulState(data);
+}
+
+class BillingInformationFailedState extends AppStates {}
