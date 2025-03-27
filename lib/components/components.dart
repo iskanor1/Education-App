@@ -174,3 +174,41 @@ class MySearchDelegate extends SearchDelegate{
 Widget Loading({MainColor=Colors.black,SecondColor=Colors.grey}) {
   return Center(child: CircularProgressIndicator(color: MainColor,backgroundColor: SecondColor,),);
 }
+
+Widget sectionTitle(String title) {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 8.0),
+    child: Text(
+      title,
+      style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    ),
+  );
+}
+
+Widget containerWrapper(List<Widget> children) {
+  return Container(
+    padding: EdgeInsets.all(10),
+    margin: EdgeInsets.symmetric(vertical: 8),
+    decoration: BoxDecoration(
+      color: Colors.purple.shade50,
+      borderRadius: BorderRadius.circular(12),
+    ),
+    child: Column(children: children),
+  );
+}
+
+Widget customTextField(String hint, IconData icon) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 10.0),
+    child: TextFormField(
+      decoration: InputDecoration(
+        prefixIcon: Icon(icon),
+        hintText: hint,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+        filled: true,
+        fillColor: Colors.white,
+      ),
+    ),
+  );
+}
+

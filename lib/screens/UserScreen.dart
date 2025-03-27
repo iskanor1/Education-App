@@ -80,7 +80,7 @@ class Userscreen extends StatelessWidget {
                             ConditionalBuilder(
                               condition: c.user?.record.avatar==null || c.user!.record.avatar==''||c.user!.record.avatar.isEmpty,
                               builder: (context) =>Image(image:
-                                AssetImage('360_f_65772719_a1_uv5k_li5n_cewi0_bnlli_fa_bpek_ubv5_fv_VlO1Aq7yFI.jpg',),
+                                AssetImage('assets/360_f_65772719_a1_uv5k_li5n_cewi0_bnlli_fa_bpek_ubv5_fv_VlO1Aq7yFI.jpg',),
                                 fit: BoxFit.cover,
                                 width: 140, // Diameter of CircleAvatar (2 * radius)
                                 height: 140,),

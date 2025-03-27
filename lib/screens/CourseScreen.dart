@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ecommercey/models/courses_model.dart';
 import 'package:flutter/material.dart';
-
 import '../Api/const.dart';
 import '../components/components.dart';
 import '../components/const.dart';
