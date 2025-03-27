@@ -1,4 +1,3 @@
-import 'package:ecommercey/screens/CourseScreen.dart';
 import 'package:flutter/material.dart';
 
 import '../components/components.dart';
