@@ -176,6 +176,7 @@ Widget Loading({MainColor=Colors.black,SecondColor=Colors.grey}) {
   return Center(child: CircularProgressIndicator(color: MainColor,backgroundColor: SecondColor,),);
 }
 
+
 Widget sectionTitle(String title) {
   return Padding(
     padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -198,13 +199,16 @@ Widget containerWrapper(List<Widget> children) {
   );
 }
 
-TextField customTextField(String label, IconData icon, {required TextEditingController controller}) {
-  return TextField(
-    controller: controller,
-    decoration: InputDecoration(
-      labelText: label,
-      prefixIcon: Icon(icon),
-      border: OutlineInputBorder(),
+Widget customTextField(String label, IconData icon, {required TextEditingController controller}) {
+  return Padding(
+    padding: EdgeInsets.all(10),
+    child: TextField(
+      controller: controller,
+      decoration: InputDecoration(
+        labelText: label,
+        prefixIcon: Icon(icon),
+        border: OutlineInputBorder(),
+      ),
     ),
   );
 }

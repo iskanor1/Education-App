@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../components/components.dart';
+import '../components/const.dart';
 import '../cubit/cubit.dart';
-import '../cubit/states.dart' show AppStates, BillingInformationFailedState, BillingInformationState, BillingInformationSuccessfulState;
+import '../cubit/states.dart';
 import 'MainScreen.dart';
 
 class BillingScreen extends StatelessWidget {
@@ -21,14 +22,9 @@ class BillingScreen extends StatelessWidget {
 
   final String courseId;
   final double price;
-  final String userId;
-  final String userEmail;
-
   BillingScreen({
     required this.courseId,
     required this.price,
-    required this.userId,
-    required this.userEmail,
     Key? key,
   }) : super(key: key);
 
@@ -61,11 +57,42 @@ class BillingScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   sectionTitle("Personal Information"),
-                  containerWrapper([
-                    customTextField("First Name", Icons.person, controller: firstNameController),
-                    customTextField("Last Name", Icons.person, controller: lastNameController),
-                    customTextField("Phone Number", Icons.phone, controller: phoneController),
-                  ]),
+                  containerWrapper(
+                    [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Etextfiled(hint: "First Name",icon: Icons.person,controller: firstNameController,keyboard: TextInputType.name,vaild: (value)
+                      {
+                        if(value!.isEmpty||value==null)
+                        {
+                          return 'Please enter a valid email';
+                        }
+                        return null;
+                      },),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Etextfiled(hint: "Last Name",icon: Icons.person,controller:  lastNameController,keyboard: TextInputType.name,vaild: (value)
+                      {
+                        if(value!.isEmpty||value==null)
+                        {
+                          return 'Please enter a valid email';
+                        }
+                        return null;
+                      },),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Etextfiled(hint: "Phone Number",icon: Icons.phone,controller:  phoneController,keyboard: TextInputType.name,vaild: (value)
+                      {
+                        if(value!.isEmpty||value==null)
+                        {
+                          return 'Please enter a valid email';
+                        }
+                        return null;
+                      },),
+                    ),
+                  ],),
                   sectionTitle("Shipping Address"),
                   containerWrapper([
                     customTextField("Country", Icons.public, controller: countryController),
@@ -107,7 +134,7 @@ class BillingScreen extends StatelessWidget {
                         },
                         style: TextButton.styleFrom(
                           foregroundColor: Colors.white,
-                          backgroundColor: Colors.purple,
+                          backgroundColor: colors.Persiangreen.toColor(),
                           padding:  EdgeInsets.symmetric(
                               horizontal: 30, vertical: 15),
                         ),
