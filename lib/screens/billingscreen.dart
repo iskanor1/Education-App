@@ -8,16 +8,16 @@ import 'MainScreen.dart';
 
 class BillingScreen extends StatelessWidget {
 
-  final TextEditingController firstNameController = TextEditingController();
-  final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
-  final TextEditingController countryController = TextEditingController();
-  final TextEditingController cityController = TextEditingController();
-  final TextEditingController stateController = TextEditingController();
-  final TextEditingController streetController = TextEditingController();
-  final TextEditingController buildingController = TextEditingController();
-  final TextEditingController floorController = TextEditingController();
-  final TextEditingController apartmentController = TextEditingController();
+  var firstNameController = TextEditingController();
+  var lastNameController = TextEditingController();
+  var phoneController = TextEditingController();
+  var countryController = TextEditingController();
+  var cityController = TextEditingController();
+  var stateController = TextEditingController();
+  var streetController = TextEditingController();
+  var buildingController = TextEditingController();
+  var floorController = TextEditingController();
+  var apartmentController = TextEditingController();
 
 
   final String courseId;
@@ -40,6 +40,10 @@ class BillingScreen extends StatelessWidget {
         }
       },
       builder: (context, state) {
+        var c=AppCubit.get(context);
+        firstNameController.text=c.user!.record.first_name;
+        lastNameController.text=c.user!.record.last_name;
+        phoneController.text=c.user!.record.phone;
         return Scaffold(
           appBar: AppBar(
             title: const Text(
@@ -65,7 +69,7 @@ class BillingScreen extends StatelessWidget {
                       {
                         if(value!.isEmpty||value==null)
                         {
-                          return 'Please enter a valid email';
+                          return 'Please enter a valid information';
                         }
                         return null;
                       },),
@@ -76,18 +80,18 @@ class BillingScreen extends StatelessWidget {
                       {
                         if(value!.isEmpty||value==null)
                         {
-                          return 'Please enter a valid email';
+                          return 'Please enter a valid information';
                         }
                         return null;
                       },),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Etextfiled(hint: "Phone Number",icon: Icons.phone,controller:  phoneController,keyboard: TextInputType.name,vaild: (value)
+                      child: Etextfiled(hint: "Phone Number",icon: Icons.phone,controller:  phoneController,keyboard: TextInputType.phone,vaild: (value)
                       {
                         if(value!.isEmpty||value==null)
                         {
-                          return 'Please enter a valid email';
+                          return 'Please enter a valid information';
                         }
                         return null;
                       },),
@@ -95,21 +99,91 @@ class BillingScreen extends StatelessWidget {
                   ],),
                   sectionTitle("Shipping Address"),
                   containerWrapper([
-                    customTextField("Country", Icons.public, controller: countryController),
-                    customTextField("City", Icons.location_city, controller: cityController),
-                    customTextField("State/Region", Icons.map, controller: stateController),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Etextfiled(hint: "Country",icon: Icons.public,controller:  countryController,keyboard: TextInputType.text,vaild: (value)
+                      {
+                        if(value!.isEmpty||value==null)
+                        {
+                          return 'Please enter a valid information';
+                        }
+                        return null;
+                      },),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Etextfiled(hint: "City",icon: Icons.location_city,controller:  cityController,keyboard: TextInputType.text,vaild: (value)
+                      {
+                        if(value!.isEmpty||value==null)
+                        {
+                          return 'Please enter a valid information';
+                        }
+                        return null;
+                      },),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Etextfiled(hint: "State/Region",icon: Icons.map,controller:  stateController,keyboard: TextInputType.text,vaild: (value)
+                      {
+                        if(value!.isEmpty||value==null)
+                        {
+                          return 'Please enter a valid information';
+                        }
+                        return null;
+                      },),
+                    ),
                     Row(
                       children: [
-                        Expanded(child: customTextField("Street", Icons.streetview, controller: streetController)),
+                        Expanded(child:Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Etextfiled(hint: "Street",icon: Icons.streetview,controller:  streetController,keyboard: TextInputType.text,vaild: (value)
+                          {
+                            if(value!.isEmpty||value==null)
+                            {
+                              return 'Please enter a valid information';
+                            }
+                            return null;
+                          },),
+                        )),
                         const SizedBox(width: 10),
-                        Expanded(child: customTextField("Building", Icons.apartment, controller: buildingController)),
+                        Expanded(child:Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Etextfiled(hint: "Building",icon: Icons.apartment,controller:  buildingController,keyboard: TextInputType.text,vaild: (value)
+                          {
+                            if(value!.isEmpty||value==null)
+                            {
+                              return 'Please enter a valid information';
+                            }
+                            return null;
+                          },),
+                        )),
                       ],
                     ),
                     Row(
                       children: [
-                        Expanded(child: customTextField("Floor", Icons.stairs, controller: floorController)),
+                        Expanded(child:Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Etextfiled(hint: "Floor",icon: Icons.stairs,controller:  floorController,keyboard: TextInputType.text,vaild: (value)
+                          {
+                            if(value!.isEmpty||value==null)
+                            {
+                              return 'Please enter a valid information';
+                            }
+                            return null;
+                          },),
+                        )),
                         const SizedBox(width: 10),
-                        Expanded(child: customTextField("Apartment", Icons.home, controller: apartmentController)),
+                        Expanded(child:Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Etextfiled(hint: "Apartment",icon: Icons.home,controller:  apartmentController,keyboard: TextInputType.text,vaild: (value)
+                          {
+                            if(value!.isEmpty||value==null)
+                            {
+                              return 'Please enter a valid information';
+                            }
+                            return null;
+                          },),
+                        )),
                       ],
                     ),
                   ]),
@@ -119,7 +193,7 @@ class BillingScreen extends StatelessWidget {
                     children: [
                       TextButton(
                         onPressed: () {
-                          Navigator.pop(context, MaterialPageRoute(builder: (context) => Mainscreen()));
+                          Navigator.pop(context);
                         },
                         style: TextButton.styleFrom(
                           foregroundColor: Colors.black,

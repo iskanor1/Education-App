@@ -192,7 +192,7 @@ Widget containerWrapper(List<Widget> children) {
     padding: EdgeInsets.all(10),
     margin: EdgeInsets.symmetric(vertical: 8),
     decoration: BoxDecoration(
-      color: Colors.purple.shade50,
+      color: colors.Persiangreen.toColor().withOpacity(0.2),
       borderRadius: BorderRadius.circular(12),
     ),
     child: Column(children: children),
