@@ -29,29 +29,27 @@ class AppCubit extends Cubit<AppStates>
   var filter;
 
   //create billing information
-  PaymentModel ? paymentModel;
+  PaymentModel? paymentModel;
 
-  void BillingInformation({
-    //required Map<String, dynamic> billingDataJson
- required  fname ,
- required  lname ,
- required  Apartment ,
- required  Building ,
- required  phoneNumber ,
- required  country ,
- required  city ,
- required floor,
- required state,
+  Future<void> billingInformation({
+    required  fname ,
+    required  lname ,
+    required  Apartment ,
+    required  Building ,
+    required  phoneNumber ,
+    required  country ,
+    required  city ,
+    required floor,
+    required state,
     required street,
     required email,
     required price,
     required courseId,
     required userId,
 
-}) {
+}) async {
     emit(BillingInformationState());
-
-    DioPay.postBillingData(url: "v1/intention/", requestData: {
+    await DioPay.postBillingData(url: "v1/intention/", requestData: {
       'amount':price*100,
       'currency':'EGP',
       'payment_methods':[
@@ -77,12 +75,15 @@ class AppCubit extends Cubit<AppStates>
       },
       "expiration": 3600,
       "notification_url": "https://hook.eu2.make.com/hkxsijulms0j6n0hfkmjkcjvfbgofk4k",
-      "redirection_url": "https://www.google.com/"
+      "redirection_url": "https://edu4u.my.canva.site/"
 
 
-    } ).then((value) {
-      print(value.data);
-
+    } ).then((value)async {
+      print('value print ${value.data.toString()}');
+      paymentModel = await PaymentModel.fromJson(value.data);
+      print('-----------------');
+      print(paymentModel);
+      print('------------------');
       emit(BillingInformationSuccessfulState(value.data));
     }).catchError((e) {
       print(e.toString());

@@ -1,76 +1,148 @@
 class PaymentModel {
-  late int amount;
-  late String currency;
-  late List<int> paymentMethods;
-  late List<Items> items;
-  late BillingData? billingData;
-  late Extras? extras;
-  late int expiration;
-  late String notificationUrl;
+  late List<PaymentKey> paymentKeys=[];
   late String redirectionUrl;
+  late int intentionOrderId;
+  late String id;
+  late IntentionDetail intentionDetail;
+  late String clientSecret;
+  late List<PaymentMethod> paymentMethods=[];
+  late dynamic specialReference;
+  late Extras extras;
+  late bool confirmed;
+  late String status;
+  late DateTime created;
+  late dynamic cardDetail;
+  late List<dynamic> cardTokens=[];
+  late String object;
 
-  PaymentModel.fromJson(Map<String, dynamic> json) {
-    amount = json["amount"];
-    currency = json["currency"];
-    paymentMethods = List<int>.from(json["payment_methods"]);
-    items = [];
-    json['items'].forEach((item) {
-      items.add(Items.fromJson(item));
-    });
-    billingData = json['billing_data'] != null ? BillingData.fromJson(json['billing_data']) : null;
-    extras = json['extras'] != null ? Extras.fromJson(json['extras']) : null;
-    expiration = json["expiration"];
-    notificationUrl = json["notification_url"];
-    redirectionUrl = json["redirection_url"];
+   PaymentModel.fromJson(Map<String, dynamic> json) {
+     json['payment_keys'].forEach((item){
+       paymentKeys.add(PaymentKey.fromJson(item));
+     });
+      redirectionUrl= json['redirection_url'];
+      intentionOrderId= json['intention_order_id'];
+      id= json['id'];
+      intentionDetail= IntentionDetail.fromJson(json['intention_detail']);
+      clientSecret= json['client_secret'];
+      paymentMethods= (json['payment_methods'] as List).map((e) => PaymentMethod.fromJson(e)).toList();
+      specialReference= json['special_reference'];
+      extras= Extras.fromJson(json['extras']);
+      confirmed= json['confirmed'];
+      status= json['status'];
+      created= DateTime.parse(json['created']);
+      cardDetail= json['card_detail'];
+      cardTokens= json['card_tokens'];
+      object= json['object'];
   }
 }
 
-class Items {
-  late String? name;
-  late int? amount;
-  late String? description;
-  late int? quantity;
 
-  Items.fromJson(Map<String, dynamic> json) {
-    name = json["name"];
-    amount = json["amount"];
-    description = json["description"];
-    quantity = json["quantity"];
+class Extras {
+  late CreationExtras creationExtras;
+  late dynamic confirmationExtras;
+
+   Extras.fromJson(Map<String, dynamic> json) {
+      creationExtras = CreationExtras.fromJson(json['creation_extras']);
+      confirmationExtras= json['confirmation_extras'];
+  }
+}
+
+class CreationExtras {
+  late String courseId;
+  late String userId;
+  late dynamic merchantOrderId;
+
+  CreationExtras.fromJson(Map<String, dynamic> json) {
+      courseId= json['courseId'];
+      userId= json['userId'];
+      merchantOrderId= json['merchant_order_id'];
+  }
+}
+
+class IntentionDetail {
+  late int amount;
+  late List<dynamic> items=[];
+  late String currency;
+  late BillingData billingData;
+
+   IntentionDetail.fromJson(Map<String, dynamic> json) {
+      amount= json['amount'];
+      items= json['items'];
+      currency= json['currency'];
+      billingData= BillingData.fromJson(json['billing_data']);
   }
 }
 
 class BillingData {
   late String apartment;
+  late String floor;
   late String firstName;
   late String lastName;
   late String street;
   late String building;
   late String phoneNumber;
+  late String shippingMethod;
   late String city;
   late String country;
-  late String email;
-  late String floor;
   late String state;
+  late String email;
+  late String postalCode;
 
-  BillingData.fromJson(Map<String, dynamic> json) {
-    apartment = json["apartment"];
-    firstName = json["first_name"];
-    lastName = json["last_name"];
-    street = json["street"];
-    building = json["building"];
-    phoneNumber = json["phone_number"];
-    city = json["city"];
-    country = json["country"];
-    email = json["email"];
-    floor = json["floor"];
-    state = json["state"];
+   BillingData.fromJson(Map<String, dynamic> json) {
+      apartment= json['apartment'];
+      floor= json['floor'];
+      firstName= json['first_name'];
+      lastName= json['last_name'];
+      street= json['street'];
+      building= json['building'];
+      phoneNumber= json['phone_number'];
+      shippingMethod= json['shipping_method'];
+      city= json['city'];
+      country= json['country'];
+      state= json['state'];
+      email= json['email'];
+      postalCode= json['postal_code'];
   }
 }
 
-class Extras {
-  late int ee;
+class PaymentKey {
+  late int integration;
+  late String key;
+  late String gatewayType;
+  late dynamic iframeId;
+  late int orderId;
+  late String redirectionUrl;
+  late bool saveCard;
 
-  Extras.fromJson(Map<String, dynamic> json) {
-    ee = json["ee"];
+
+   PaymentKey.fromJson(Map<String, dynamic> json) {
+      integration= json['integration'];
+      key= json['key'];
+      gatewayType= json['gateway_type'];
+      iframeId=json['iframe_id'];
+      orderId= json['order_id'];
+      redirectionUrl= json['redirection_url'];
+      saveCard= json['save_card'];
   }
 }
+
+class PaymentMethod {
+  late int integrationId;
+  late dynamic alias;
+  late String name;
+  late String methodType;
+  late String currency;
+  late bool live;
+  late bool useCvcWithMoto;
+
+   PaymentMethod.fromJson(Map<String, dynamic> json) {
+      integrationId= json['integration_id'];
+      alias= json['alias'];
+      name= json['name'];
+      methodType= json['method_type'];
+      currency= json['currency'];
+      live= json['live'];
+      useCvcWithMoto= json['use_cvc_with_moto'];
+  }
+}
+

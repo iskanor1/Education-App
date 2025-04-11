@@ -21,8 +21,7 @@ class DioPay {
       data: requestData,
       options: Options(
         headers: {
-          'Authorization': 'egy_sk_test_6646401282088981031384d64604d882bf57c81c2547f74e2a5f150b42ccfa9b',
-
+          'Authorization': 'Token egy_sk_test_6646401282088981031384d64604d882bf57c81c2547f74e2a5f150b42ccfa9b',
         },
       ),
     );
